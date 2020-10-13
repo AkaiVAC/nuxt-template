@@ -3,11 +3,11 @@
 </template>
 <script>
   import Vue from 'vue';
-  import jwt_decode from 'jwt-decode';
+  import jwtDecode from 'jwt-decode';
   export default Vue.extend({
     created() {
       try {
-        const decodedBearer = jwt_decode(
+        const decodedBearer = jwtDecode(
           this.$auth.$storage.getUniversal(
             `_token.${this.$auth.$state.strategy}`
           )

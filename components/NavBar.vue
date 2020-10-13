@@ -11,7 +11,7 @@
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <DarkThemeToggle class="mr-2 hidden-sm-and-down" />
-      <v-btn class="hidden-sm-and-down" text v-if="$auth.loggedIn">
+      <v-btn class="hidden-sm-and-down mr-3" text v-if="$auth.loggedIn">
         <v-icon left>mdi-account</v-icon>
         Hello, {{ userData.givenName }}!
       </v-btn>

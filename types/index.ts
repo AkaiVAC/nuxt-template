@@ -1,1 +1,1 @@
-export { default as IUserData } from "./IUserData"
+export { default as IUserData } from './IUserData';

@@ -1,5 +1,5 @@
-import { NuxtConfig } from '@nuxt/types'
-import colors from 'vuetify/es5/util/colors'
+import { NuxtConfig } from '@nuxt/types';
+import colors from 'vuetify/es5/util/colors';
 
 const config: NuxtConfig = {
   ssr: false,
@@ -22,7 +22,7 @@ const config: NuxtConfig = {
   },
 
   publicRuntimeConfig: {
-    title: "Feature Toggle"
+    title: 'Feature Toggle',
   },
 
   css: [],
@@ -33,11 +33,7 @@ const config: NuxtConfig = {
 
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
 
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/pwa',
-    '@nuxtjs/auth-next',
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', '@nuxtjs/auth-next'],
 
   router: {
     middleware: ['auth'],
@@ -73,7 +69,7 @@ const config: NuxtConfig = {
       callback: '/auth',
     },
     strategies: {
-      "aad-msal2": {
+      'aad-msal2': {
         scheme: 'oauth2',
         endpoints: {
           authorization:
@@ -108,7 +104,24 @@ const config: NuxtConfig = {
     },
   },
 
-  build: {},
-}
+  build: {
+    hotMiddleware: {
+      client: {
+        overlay: false,
+      },
+    },
+    extend(config, ctx) {
+      // Run ESLint on save
+      if (ctx.isDev && ctx.isClient && config.module !== undefined) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/,
+        });
+      }
+    },
+  },
+};
 
 export default config;

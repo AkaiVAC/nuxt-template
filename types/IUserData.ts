@@ -3,5 +3,4 @@ export default interface IUserData {
   readonly givenName: String;
   readonly familyName: String;
   readonly email: String;
-
 }
